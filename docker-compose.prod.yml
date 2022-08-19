@@ -13,9 +13,9 @@ x-default-opts:
 
 x-django-config:
     &django-config
-    image: ghcr.io/uccser/codewof:${CODEWOF_IMAGE_TAG}
+    image: ghcr.io/GriffinBaxter/codewof:research-study-skill-tracking-and-recommendations
     environment:
-        CODEWOF_DOMAIN: ${CODEWOF_DOMAIN}
+        CODEWOF_DOMAIN: uccser-study-one.csse.canterbury.ac.nz
         POSTGRES_HOST: postgres
         POSTGRES_PORT: "5432"
         DEPLOYMENT_ENVIRONMENT_FILE: /codewof_deployment_environment
@@ -58,14 +58,10 @@ services:
             labels:
                 - "traefik.enable=true"
                 - "traefik.docker.network=uccser-public"
-                - "traefik.http.services.codewof-django.loadbalancer.server.port=8000"
-                - "traefik.http.routers.codewof-django.service=codewof-django"
-                - "traefik.http.routers.codewof-django.rule=${CODEWOF_ROUTER_RULE}"
-                - "traefik.http.routers.codewof-django.entryPoints=web"
-                # Redirect non-www to www, only triggers in production swarm.
-                - "traefik.http.middlewares.codewof-redirect-non-www.redirectregex.regex=^https://codewof(.*)"
-                - "traefik.http.middlewares.codewof-redirect-non-www.redirectregex.replacement=https://www.codewof$${1}"
-                - "traefik.http.middlewares.codewof-redirect-non-www.redirectregex.permanent=true"
+                - "traefik.http.services.research-one-django.loadbalancer.server.port=8000"
+                - "traefik.http.routers.research-one-django.service=research-one-django"
+                - "traefik.http.routers.research-one-django.rule=Host(`uccser-study-one.csse.canterbury.ac.nz`)"
+                - "traefik.http.routers.research-one-django.entryPoints=web"
         networks:
             - uccser-public
             - backend
