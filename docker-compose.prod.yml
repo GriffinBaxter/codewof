@@ -13,7 +13,7 @@ x-default-opts:
 
 x-django-config:
     &django-config
-    image: ghcr.io/GriffinBaxter/codewof:research-study-skill-tracking-and-recommendations
+    image: ghcr.io/griffinbaxter/codewof:research-study-skill-tracking-and-recommendations
     environment:
         CODEWOF_DOMAIN: uccser-study-one.csse.canterbury.ac.nz
         POSTGRES_HOST: postgres
