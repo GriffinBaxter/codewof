@@ -11,7 +11,12 @@
 
 {% block content %}
     <p>Currently all questions are based in Python 3.</p>
-    <details open>
+    <br>
+    <h2>Your recommended questions</h2>
+    {% include "programming/question_components/question_recommendations.html" %}
+    <br>
+    <h2>All questions</h2>
+    <details>
         <summary>Filter Questions</summary>
         {% crispy filter.form filter_formatter %}
     </details>
